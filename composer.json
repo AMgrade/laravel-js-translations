@@ -1,0 +1,28 @@
+{
+    "name": "amgrade/laravel-js-translations",
+    "description": "Extract translations into JS",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Dmitry Borzyonok",
+            "email": "d.borzyonok@amgrade.com"
+        }
+    ],
+    "require": {
+        "illuminate/console": "^9.0",
+        "illuminate/support": "^9.0",
+        "symfony/finder": "^6.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "AMgrade\\LaravelJsTranslations\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "AMgrade\\LaravelJsTranslations\\LaravelJsTranslationServiceProvider"
+            ]
+        }
+    }
+}
