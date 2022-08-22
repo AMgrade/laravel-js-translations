@@ -12,11 +12,11 @@ return [
             // Destination where your translations will be stored. You can pass
             // filename with "js" or "json" extension, and it will extract in the
             // preferred format.
-            'destination' => "{$app->publicPath()}/js/translations.js",
+            'destination' => public_path('/js/translations.js'),
 
             // Path where your translations are located. By default, in Laravel 9
             // it is "root project folder" + "/lang".
-            'path' => "{$app->resourcePath()}/lang",
+            'path' => base_path('lang'),
 
             // If you need to extract translations for "react-i18next", then you
             // need to wrap each locale with "translation" key, so you can just
