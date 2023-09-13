@@ -6,16 +6,8 @@ namespace AMgrade\LaravelJsTranslations;
 
 use Illuminate\Support\ServiceProvider;
 
-/**
- * Class LaravelJsTranslationServiceProvider
- *
- * @package AMgrade\LaravelJsTranslations
- */
 class LaravelJsTranslationServiceProvider extends ServiceProvider
 {
-    /**
-     * @return void
-     */
     public function boot(): void
     {
         if ($this->app->runningInConsole()) {
@@ -29,9 +21,6 @@ class LaravelJsTranslationServiceProvider extends ServiceProvider
         }
     }
 
-    /**
-     * @return void
-     */
     public function register(): void
     {
         $this->mergeConfigFrom(

@@ -29,56 +29,25 @@ use const null;
 use const PATHINFO_EXTENSION;
 use const true;
 
-/**
- * Class ExtractCommand
- *
- * @package AMgrade\LaravelJsTranslations\Console\Commands
- */
 class ExtractCommand extends Command
 {
-    /**
-     * @var string
-     */
     protected $signature = 'js-translations:extract {--B|bundle=default} {--D|destination=} {--N|namespace=}';
 
-    /**
-     * @var string
-     */
     protected $description = 'Extract translations into JS';
 
-    /**
-     * @var array
-     */
     protected array $config = [];
 
-    /**
-     * @var array
-     */
     protected array $extensions = ['php', 'json'];
 
-    /**
-     * @var string|null
-     */
     protected ?string $namespace;
 
-    /**
-     * @var array
-     */
     protected array $exclude = [];
 
-    /**
-     * @var string
-     */
     protected string $destination;
 
-    /**
-     * @var array
-     */
     protected array $translations = [];
 
     /**
-     * @return int
-     *
      * @throws \Illuminate\Contracts\Container\BindingResolutionException
      * @throws \InvalidArgumentException
      * @throws \JsonException
@@ -114,7 +83,7 @@ class ExtractCommand extends Command
 
             $pathname = str_replace(DIRECTORY_SEPARATOR, '.', $pathname);
 
-            $key = $this->namespace !== null
+            $key = null !== $this->namespace
                 ? "{$locale}.{$this->namespace}.{$pathname}"
                 : "{$locale}.{$pathname}";
 
@@ -138,8 +107,6 @@ class ExtractCommand extends Command
     }
 
     /**
-     * @return \AMgrade\LaravelJsTranslations\Console\Commands\ExtractCommand
-     *
      * @throws \Illuminate\Contracts\Container\BindingResolutionException
      */
     protected function setConfig(): ExtractCommand
@@ -154,9 +121,6 @@ class ExtractCommand extends Command
         return $this;
     }
 
-    /**
-     * @return \AMgrade\LaravelJsTranslations\Console\Commands\ExtractCommand
-     */
     protected function setNamespace(): ExtractCommand
     {
         $this->namespace = $this->option('namespace') ?? $config['namespace'] ?? null;
@@ -164,9 +128,6 @@ class ExtractCommand extends Command
         return $this;
     }
 
-    /**
-     * @return \AMgrade\LaravelJsTranslations\Console\Commands\ExtractCommand
-     */
     protected function setExclude(): ExtractCommand
     {
         $this->exclude = [
@@ -179,8 +140,6 @@ class ExtractCommand extends Command
     }
 
     /**
-     * @return \AMgrade\LaravelJsTranslations\Console\Commands\ExtractCommand
-     *
      * @throws \InvalidArgumentException
      */
     protected function setDestination(): ExtractCommand
@@ -196,9 +155,6 @@ class ExtractCommand extends Command
         return $this;
     }
 
-    /**
-     * @return \Symfony\Component\Finder\Finder
-     */
     protected function getTranslationFiles(): Finder
     {
         $extensions = $this->extensions;
@@ -219,8 +175,6 @@ class ExtractCommand extends Command
     }
 
     /**
-     * @return string
-     *
      * @throws \InvalidArgumentException
      */
     protected function getPath(): string
@@ -234,22 +188,11 @@ class ExtractCommand extends Command
         return $path;
     }
 
-    /**
-     * @param string $locale
-     *
-     * @return bool
-     */
     protected function shouldSkipLocale(string $locale): bool
     {
         return isset($this->exclude['locales'][$locale]);
     }
 
-    /**
-     * @param string $relativePathname
-     * @param string $pathname
-     *
-     * @return bool
-     */
     protected function shouldSkipFile(
         string $relativePathname,
         string $pathname
@@ -259,11 +202,6 @@ class ExtractCommand extends Command
     }
 
     /**
-     * @param \Symfony\Component\Finder\SplFileInfo $file
-     * @param string $extension
-     *
-     * @return array
-     *
      * @throws \JsonException
      */
     protected function getFileContent(SplFileInfo $file, string $extension): array
@@ -285,10 +223,6 @@ class ExtractCommand extends Command
     }
 
     /**
-     * @param string $destination
-     *
-     * @return string
-     *
      * @throws \JsonException
      */
     protected function getContent(string $destination): string
