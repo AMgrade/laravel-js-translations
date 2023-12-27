@@ -2,11 +2,12 @@
 
 declare(strict_types=1);
 
-namespace AMgrade\LaravelJsTranslations\Console\Commands;
+namespace AMgrade\JsTranslations\Console\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Arr;
 use InvalidArgumentException;
+use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\Finder\SplFileInfo;
 
@@ -31,7 +32,7 @@ use const true;
 
 class ExtractCommand extends Command
 {
-    protected $signature = 'js-translations:extract {--B|bundle=default} {--D|destination=} {--N|namespace=}';
+    protected $name = 'js-translations:extract';
 
     protected $description = 'Extract translations into JS';
 
@@ -111,12 +112,11 @@ class ExtractCommand extends Command
      */
     protected function setConfig(): ExtractCommand
     {
-        /** @var \Illuminate\Contracts\Config\Repository $config */
-        $config = $this->laravel->make('config');
-
         $bundle = $this->option('bundle');
 
-        $this->config = $config->get("js-translations.bundles.{$bundle}", []);
+        $this->config = $this->laravel
+            ->make('config')
+            ->get("js-translations.bundles.{$bundle}", []);
 
         return $this;
     }
@@ -234,5 +234,13 @@ class ExtractCommand extends Command
         }
 
         return "export default {$content};";
+    }
+
+    protected function configure(): void
+    {
+        $this
+            ->addOption('bundle', 'B', InputOption::VALUE_OPTIONAL, '', 'default')
+            ->addOption('destination', 'D', InputOption::VALUE_OPTIONAL)
+            ->addOption('namespace', 'N', InputOption::VALUE_OPTIONAL);
     }
 }

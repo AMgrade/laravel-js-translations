@@ -15,13 +15,13 @@
     },
     "autoload": {
         "psr-4": {
-            "AMgrade\\LaravelJsTranslations\\": "src/"
+            "AMgrade\\JsTranslations\\": "src/"
         }
     },
     "extra": {
         "laravel": {
             "providers": [
-                "AMgrade\\LaravelJsTranslations\\LaravelJsTranslationServiceProvider"
+                "AMgrade\\LaravelJsTranslations\\JsTranslationServiceProvider"
             ]
         }
     }

@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace AMgrade\LaravelJsTranslations;
+namespace AMgrade\JsTranslations;
 
 use Illuminate\Support\ServiceProvider;
 
-class LaravelJsTranslationServiceProvider extends ServiceProvider
+class JsTranslationServiceProvider extends ServiceProvider
 {
     public function boot(): void
     {
