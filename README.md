@@ -9,7 +9,7 @@ composer require amgrade/laravel-js-translations
 ```
 
 Then, if you don't use Laravel package autodiscovery feature, you need to add
-`LaravelJsTranslationServiceProvider` to the `config/app.php`.
+`JsTranslationServiceProvider` to the `config/app.php`.
 
 ```php
 /*
