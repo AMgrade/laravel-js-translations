@@ -15,7 +15,7 @@ Then, if you don't use Laravel package autodiscovery feature, you need to add
 /*
  * Package Service Providers...
  */
-AMgrade\LaravelJsTranslations\JsTranslationServiceProvider::class,
+AMgrade\JsTranslations\JsTranslationServiceProvider::class,
 ```
 
 ### Configuration
